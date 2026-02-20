@@ -6,7 +6,7 @@ import UIKit
 import UniformTypeIdentifiers
 
 struct WebViewContainer: UIViewRepresentable {
-    @EnvironmentObject private var coordinator: WebViewCoordinator
+    @EnvironmentObject private var coordinator: HeatBurstWebViewCoordinator
     let url: URL
 
     func makeUIView(context: Context) -> WKWebView {
@@ -66,10 +66,10 @@ struct WebViewContainer: UIViewRepresentable {
 
     final class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
         private weak var webView: WKWebView?
-        private weak var appCoordinator: WebViewCoordinator?
+        private weak var appCoordinator: HeatBurstWebViewCoordinator?
         private var pendingFileUploadCompletion: (([URL]?) -> Void)?
 
-        func attach(webView: WKWebView, appCoordinator: WebViewCoordinator) {
+        func attach(webView: WKWebView, appCoordinator: HeatBurstWebViewCoordinator) {
             self.webView = webView
             self.appCoordinator = appCoordinator
             appCoordinator.hostWebView = webView
@@ -243,7 +243,7 @@ struct WebViewContainer: UIViewRepresentable {
             return child
         }
         
-        private func createPaymentWebView(for url: URL, with configuration: WKWebViewConfiguration, appCoordinator: WebViewCoordinator?) -> WKWebView? {
+        private func createPaymentWebView(for url: URL, with configuration: WKWebViewConfiguration, appCoordinator: HeatBurstWebViewCoordinator?) -> WKWebView? {
             print("💳 Creating ULTIMATE payment WebView for: \(url)")
             
             // Используем переданную конфигурацию, а не создаем новую

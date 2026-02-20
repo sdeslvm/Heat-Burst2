@@ -3,12 +3,12 @@ import SwiftUI
 
 @main
 struct HeatBurstApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
-    private let dependencies = AppDependencies()
+    @UIApplicationDelegateAdaptor(HeatBurstAppDelegate.self) private var appDelegate
+    private let dependencies = HeatBurstAppDependencies()
     
     var body: some Scene {
         WindowGroup {
-            RootView(viewModel: RootViewModel(launchService: dependencies.launchService))
+            HeatBurstRootView(viewModel: HeatBurstRootViewModel(launchService: dependencies.launchService))
                 .environmentObject(dependencies.webViewCoordinator)
         }
     }

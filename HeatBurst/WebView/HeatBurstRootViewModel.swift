@@ -3,7 +3,7 @@ import Foundation
 import Combine
 
 @MainActor
-final class RootViewModel: ObservableObject {
+final class HeatBurstRootViewModel: ObservableObject {
     @Published private(set) var state: LaunchState = .loading
     @Published var errorMessage: String?
 

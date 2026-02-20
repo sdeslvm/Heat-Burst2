@@ -2,7 +2,7 @@
 
 import Foundation
 
-struct AppDependencies {
+struct HeatBurstAppDependencies {
     // MARK: - Dependencies
     let persistenceService: PersistenceService
     let trackingService: TrackingService
@@ -10,7 +10,7 @@ struct AppDependencies {
     let backendClient: BackendClient
     let linkAssemblyService: LinkAssemblyService
     let launchService: LaunchService
-    let webViewCoordinator: WebViewCoordinator
+    let webViewCoordinator: HeatBurstWebViewCoordinator
 
     init() {
         let persistenceService = PersistenceService()
@@ -35,6 +35,6 @@ struct AppDependencies {
             linkAssemblyService: linkAssemblyService,
             cookieStore: cookieStore
         )
-        self.webViewCoordinator = WebViewCoordinator()
+        self.webViewCoordinator = HeatBurstWebViewCoordinator()
     }
 }

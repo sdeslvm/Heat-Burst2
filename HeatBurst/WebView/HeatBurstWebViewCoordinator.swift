@@ -6,7 +6,7 @@ import WebKit
 import UIKit
 #endif
 
-final class WebViewCoordinator: NSObject, ObservableObject {
+final class HeatBurstWebViewCoordinator: NSObject, ObservableObject {
     @Published var canGoBack = false
     @Published var canGoForward = false
     @Published var isLoading = false

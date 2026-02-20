@@ -8,7 +8,7 @@ import FirebaseMessaging
 import AppsFlyerLib
 
 /// Хранит константы конфигурации SDK, которые вы заполните реальными значениями.
-enum ThirdPartyConfig {
+enum HeatBurstThirdPartyConfig {
     /// Запросите dev-key у заказчика и подставьте сюда.
     static var appsFlyerDevKey: String {
         Bundle.main.object(forInfoDictionaryKey: "AppsFlyerDevKey") as? String ?? ""
@@ -19,7 +19,7 @@ enum ThirdPartyConfig {
     }
 }
 
-final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, AppsFlyerLibDelegate {
+final class HeatBurstAppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate, AppsFlyerLibDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         FirebaseApp.configure()
@@ -114,8 +114,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCent
 
     private func configureAppsFlyer() {
         let appsFlyer = AppsFlyerLib.shared()
-        let devKey = ThirdPartyConfig.appsFlyerDevKey
-        let appID = ThirdPartyConfig.appsFlyerAppID
+        let devKey = HeatBurstThirdPartyConfig.appsFlyerDevKey
+        let appID = HeatBurstThirdPartyConfig.appsFlyerAppID
         #if DEBUG
         if devKey.isEmpty || devKey == "REPLACE_WITH_REAL_AF_DEV_KEY" {
             assertionFailure("AppsFlyerDevKey is not configured in Info.plist")

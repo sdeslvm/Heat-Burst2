@@ -3,9 +3,9 @@
 import SwiftUI
 import WebKit
 
-struct RootView: View {
-    @StateObject var viewModel: RootViewModel
-    @EnvironmentObject private var webCoordinator: WebViewCoordinator
+struct HeatBurstRootView: View {
+    @StateObject var viewModel: HeatBurstRootViewModel
+    @EnvironmentObject private var webCoordinator: HeatBurstWebViewCoordinator
 
     var body: some View {
         ZStack {
@@ -85,7 +85,7 @@ struct RootView: View {
     }
 
     private struct WebShellView: View {
-        @EnvironmentObject private var webCoordinator: WebViewCoordinator
+        @EnvironmentObject private var webCoordinator: HeatBurstWebViewCoordinator
         @State private var presentedChildWebView: WKWebView?
         @State private var presentedPaymentWebView: WKWebView?
         @State private var dragOffset: CGSize = .zero
@@ -140,7 +140,7 @@ struct RootView: View {
                 // Если есть платежный WebView, но открывается обычный дочерний — закрываем платежный
                 if let paymentWebView = webCoordinator.paymentWebView, let newValue = newValue {
                     let childUrl = newValue.url?.absoluteString ?? ""
-                    if !RootView.isPaymentUrlString(childUrl) {
+                    if !HeatBurstRootView.isPaymentUrlString(childUrl) {
                         print("⚠️ Payment WebView exists, closing to show child WebView")
                         webCoordinator.closePaymentWebView()
                     } else {
@@ -242,7 +242,7 @@ struct RootView: View {
     
     private struct ChildWebViewContainer: View {
         let webView: WKWebView
-        @EnvironmentObject private var webCoordinator: WebViewCoordinator
+        @EnvironmentObject private var webCoordinator: HeatBurstWebViewCoordinator
         @Environment(\.dismiss) private var dismiss
         @State private var dragOffset: CGSize = .zero
         
@@ -288,7 +288,7 @@ struct RootView: View {
     
     private struct SimpleWebViewContainer: UIViewRepresentable {
         let webView: WKWebView
-        @EnvironmentObject private var webCoordinator: WebViewCoordinator
+        @EnvironmentObject private var webCoordinator: HeatBurstWebViewCoordinator
         
         func makeUIView(context: Context) -> UIView {
             print("📱 Creating SimpleWebViewContainer")
@@ -326,9 +326,9 @@ struct RootView: View {
         
         class Coordinator: NSObject {
             let webView: WKWebView
-            let webCoordinator: WebViewCoordinator
+            let webCoordinator: HeatBurstWebViewCoordinator
             
-            init(webView: WKWebView, webCoordinator: WebViewCoordinator) {
+            init(webView: WKWebView, webCoordinator: HeatBurstWebViewCoordinator) {
                 self.webView = webView
                 self.webCoordinator = webCoordinator
             }
@@ -388,7 +388,7 @@ struct RootView: View {
     
     private struct PaymentWebViewContainer: View {
         let webView: WKWebView
-        @EnvironmentObject private var webCoordinator: WebViewCoordinator
+        @EnvironmentObject private var webCoordinator: HeatBurstWebViewCoordinator
         @Environment(\.dismiss) private var dismiss
         @State private var dragOffset: CGSize = .zero
         
